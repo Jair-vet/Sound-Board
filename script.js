@@ -1,15 +1,25 @@
-const panels = document.querySelectorAll('.panel')
+const sounds = ['applause', 'boo', 'gasp', 'tada', 'victory', 'wrong']
 
-panels.forEach( panel => {
-    panel.addEventListener('click', () => {
-        removeActiveClasses()
-        panel.classList.add('active')
+sounds.forEach(sound => {
+    const btn = document.createElement('button')
+    btn.classList.add('btn')
+
+    btn.innerText = sound
+
+    btn.addEventListener('click', () => {
+        stopSongs()
+
+        document.getElementById(sound).play()
     })
+
+    document.getElementById('buttons').appendChild(btn)
 })
 
-function removeActiveClasses() {
-    panels.forEach( panel => {
-        panel.classList.remove('active')
+function stopSongs() {
+    sounds.forEach(sound => {
+        const song = document.getElementById(sound)
+
+        song.pause()
+        song.currentTime = 0;
     })
 }
-
